@@ -11,8 +11,7 @@ using System.Windows.Forms;
 namespace Lab2B
 {
     public partial class Form1 : Form
-    {
-        
+    { 
         
         public Form1()
         {
@@ -21,17 +20,18 @@ namespace Lab2B
 
         private void exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close();   //close the application
         }
 
         private void calculate_Click(object sender, EventArgs e)
         {
-            int hairdresser = 0;
+            int hairdresser = 0;            
             double clientType = 0;
             int services = 0;
             double numberOfClientVisit = 0;
 
-            if (hairdresser1.Checked == true)
+            //prices of hairdressers
+            if (hairdresser1.Checked == true)           
                 hairdresser = 30;
             else if (hairdresser2.Checked == true)
                 hairdresser = 45;
@@ -42,6 +42,7 @@ namespace Lab2B
             else if (hairdresser5.Checked == true)
                 hairdresser = 55;           
 
+            //prices of services
             if (service1.Checked == true)
                 services += 30;
             if (service2.Checked == true)
@@ -51,6 +52,7 @@ namespace Lab2B
             if (service4.Checked == true)
                 services += 200;
 
+            //which client get how much discount
             if (client1.Checked == true)
                 clientType = 0.00;
             else if (client2.Checked == true)
@@ -60,8 +62,20 @@ namespace Lab2B
             else if (client4.Checked == true)
                 clientType = 0.15;
 
+            /**
+             * convert the specified string
+             * into bool value
+             * It shows the final value and
+             * the tell  us the conversion is sucessful or not
+             */
             bool output = Int32.TryParse(clientVisitsTextBox.Text, out int clientVisitsInt);
 
+            /**
+             * check if any service is not selected than shows the error message
+             * check if textbox is empty than show the error message
+             * check if there is a string than it shows the error message
+             * input is less than zero, it shoes the error message
+             */
             if (service1.Checked != true && service2.Checked != true && service3.Checked != true && service4.Checked != true)
                 MessageBox.Show("Please Select any Service");
 
@@ -79,6 +93,12 @@ namespace Lab2B
                 MessageBox.Show("Number is must be equal or grater than 0");
                 clientVisitsTextBox.Clear();
             }
+
+            /**
+             * first int convert into the string 
+             * if input is between 1 and 3 than it gives the specific discount to that number of people
+             * the same method applies to a discount system which is provided to some specific number of people
+             */
             else
             {
                 if (Convert.ToInt32(clientVisitsTextBox.Text) >= 1 && Convert.ToInt32(clientVisitsTextBox.Text) <= 3)
@@ -93,17 +113,32 @@ namespace Lab2B
                 else if (Convert.ToInt32(clientVisitsTextBox.Text) >= 14)
                     numberOfClientVisit = 0.15;
 
+                /**
+                 * store the amount of hairdresser and services by doing addition
+                 * store the client type and number of client visits in a variable by doing addition
+                 * store the above calculated values by doing multiplication 
+                 * store the first calculated value and 3rd calculated value by doing subtraction
+                 */
                 int clientSum = hairdresser + services;
                 double sumOfDiscount = clientType + numberOfClientVisit;
                 double countTotalVisiters = clientSum * sumOfDiscount;
                 double totalAmountShow = clientSum - countTotalVisiters;
 
+                //shows the final value in the label
                 totalPriceLabel.Text = totalAmountShow.ToString("C");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            /**
+             * clear button do the following actions
+             * 1st hairdresser checked
+             * 1st client type checked
+             * all services are unchecked
+             * total price label " "
+             * client visitis input is clear
+             */
             clientVisitsTextBox.Clear();
             hairdresser1.Checked = true;
             client1.Checked = true;
