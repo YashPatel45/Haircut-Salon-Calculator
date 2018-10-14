@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//This program contains the consept of GUI. This is a hair cut application which include some hairdressers, 
+//client types, services,and other things. User can select any services, any hairdresser, any client type 
+//and number of visitors so user know how much cost they will get
+
 namespace Lab2B
 {
     public partial class Form1 : Form
